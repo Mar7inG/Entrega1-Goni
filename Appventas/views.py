@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from Appventas.models import bicicletas, repuestos, indumentaria
 from Appventas.forms import bicisformulario, repuestosFormulario, indumentariaFormularios
@@ -57,6 +58,7 @@ def Formulariorepuestos(request):
 
 def Formularioindumentarias(request):
 
+
     if request.method == 'POST':
         InduFormulario=indumentariaFormularios(request.POST)
         print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
@@ -74,3 +76,14 @@ def Formularioindumentarias(request):
     else:
         InduFormulario=indumentariaFormularios()
         return render(request,"indumentariaFormulario.html", {"IndumentariaFormularios": InduFormulario})
+
+
+def Buscquedabicis(request):
+
+    return render (request, "Appventas/biciBusqueda.html")
+
+def RespuestaBuscarbicis(request):
+
+    respuesta=f"Estoy buscando la bicicleta modelo: {request.GET['Modelo']}"
+
+    return HttpResponse(respuesta)
