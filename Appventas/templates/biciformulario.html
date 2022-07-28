@@ -4,9 +4,9 @@
 
 {% block bloquecambia %}
 
-    <h2>Formulario - Agregar bicicletas</h2>
-    
-    <form action="" method="POST">{% csrf_token %}
+    <h2 class="text-center">Formulario - Agregar bicicletas</h2>
+    <br><br>
+    <form class="text-center" action="" method="POST">{% csrf_token %}
         
         <!--<p> Marca: <input type="text" name="Marca"></p>
         <p> Modelo : <input type="text" name="Modelo"></p>
@@ -18,10 +18,10 @@
     
         {{ BiciFormulario.as_table}}
         <br>
-    
+        <br>
     
         <input type="submit" value="Enviar"  href="">
-
+        <br><br>
     </form>
     
 
