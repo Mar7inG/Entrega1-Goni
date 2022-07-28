@@ -9,6 +9,11 @@ from Appventas.forms import bicisformulario, repuestosFormulario, indumentariaFo
 def inicio(request):
 
     return render(request, "inicio.html")
+
+def Comenzar(request):
+
+    return render(request, "ComenzarApp.html")
+
 def Save(request):
 
     return render(request, "Save.html")

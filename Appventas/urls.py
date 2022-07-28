@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from Appventas.views import Formulariobicis, Formularioindumentarias, Formulariorepuestos, inicio
-from Entrega1.Appventas.views import Buscquedabicis
+from Appventas.views import Buscquedabicis
 
 
 urlpatterns = [
