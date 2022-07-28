@@ -1,0 +1,30 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block bloquecambia %}
+
+    <h2>Formulario - Agregar bicicletas</h2>
+    
+    <form action="" method="POST">{% csrf_token %}
+        
+        <!--<p> Marca: <input type="text" name="Marca"></p>
+        <p> Modelo : <input type="text" name="Modelo"></p>
+        <p> Rodado : <input type="text" name="Rodado"></p>
+        <p> Color : <input type="text" name="Color"></p>
+        <p> Fecha de fabricacion : <input type="date" name="Fecha_Fabricacion"></p>
+        <p> Precio : <input type ="number"    name="Precio"></p>
+        -->
+    
+        {{ BiciFormulario.as_table}}
+        <br>
+    
+    
+        <input type="submit" value="Enviar"  href="">
+
+    </form>
+    
+
+
+
+{% endblock bloquecambia %}
