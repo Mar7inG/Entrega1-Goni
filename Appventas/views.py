@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render
 from Appventas.models import bicicletas, repuestos, indumentaria
@@ -92,3 +93,29 @@ def RespuestaBuscarbicis(request):
     respuesta=f"Estoy buscando la bicicleta modelo: {request.GET['Modelo']}"
 
     return HttpResponse(respuesta)
+
+
+def LeerBicis(request):
+    
+    bicis=bicicletas.objects.all()
+
+    contexto={"Bicicletas":bicis}
+
+    return render(request,"LeerBicicletas.html", contexto)
+
+def LeerRepu(request):
+    
+    repues=repuestos.objects.all()
+
+    contexto={"Repuestos":repues}
+
+    return render(request,"LeerRepuestos.html", contexto)
+
+def LeerImdum(request):
+    
+    indumen=indumentaria.objects.all()
+
+    contexto={"Indumentaria":indumen}
+
+    return render (request, "LeerIndumentarias.html", contexto)
+
