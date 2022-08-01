@@ -1,0 +1,23 @@
+{% extends 'Padre.html' %}
+
+{% load static %}
+
+{% block bloquecambia %}
+
+    <p>Se busco las Bicicletas con modelos: {{modelo}}</p>
+
+    
+    {% if modelos %}
+        
+        {% for item in modelos  %}
+            <li>{{item.modelo}}</li>
+        {% endfor %}
+    {% else %}
+        <p>No hay resultados.</p>        
+        
+    {% endif %}
+        
+
+
+
+{% endblock bloquecambia %}

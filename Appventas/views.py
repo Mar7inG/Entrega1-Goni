@@ -34,7 +34,29 @@ def Formulariobicis(request):#Template cargar una bici en la tabla
         #    return render (request,"inicio2.html")
     else:
         BiciFormulario=bicisformulario()
-        return render(request,"biciFormulario.html", {"BiciFormulario": BiciFormulario})
+        return render(request,"FormularioBicicletas.html", {"BiciFormulario": BiciFormulario})
+
+
+def Formularioindumentarias(request):#Template cargar una indumentaria en la tabla
+
+
+    if request.method == 'POST':
+        InduFormulario=indumentariaFormularios(request.POST)
+        print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
+        print("Formulario:",InduFormulario ) 
+
+        if InduFormulario.is_valid():
+            print("Entro al 2° if")
+            data=InduFormulario.cleaned_data
+            #En la tabla que creo con la clase le cargo los datos del formulario de Django
+            Indu=indumentaria(tipo=data['Tipo'],marca=data['Marca'],modelo=data['Modelo'],talle=data['Talle'],precio=data['Precio'],)
+            Indu.save()
+            return render(request, "Save.html")
+        else:
+            return render (request,"inicio2.html")
+    else:
+        InduFormulario=indumentariaFormularios()
+        return render(request,"FormularioIndumentaria.html", {"IndumentariaFormularios": InduFormulario})
 
 
 def Formulariorepuestos(request):#Template cargar un repuesto en la tabla
@@ -57,35 +79,15 @@ def Formulariorepuestos(request):#Template cargar un repuesto en la tabla
             return render (request,"inicio2.html")
     else:
         RepuFormulario=repuestosFormulario()
-        return render(request,"repuestoFormulario.html", {"RepuestosFormularios":RepuFormulario})        
+        return render(request,"FormularioRepuestos.html", {"RepuestosFormularios":RepuFormulario})        
 
-def Formularioindumentarias(request):#Template cargar una indumentaria en la tabla
-
-
-    if request.method == 'POST':
-        InduFormulario=indumentariaFormularios(request.POST)
-        print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
-        print("Formulario:",InduFormulario ) 
-
-        if InduFormulario.is_valid():
-            print("Entro al 2° if")
-            data=InduFormulario.cleaned_data
-            #En la tabla que creo con la clase le cargo los datos del formulario de Django
-            Indu=indumentaria(tipo=data['Tipo'],marca=data['Marca'],modelo=data['Modelo'],talle=data['Talle'],precio=data['Precio'],)
-            Indu.save()
-            return render(request, "Save.html")
-        else:
-            return render (request,"inicio2.html")
-    else:
-        InduFormulario=indumentariaFormularios()
-        return render(request,"indumentariaFormulario.html", {"IndumentariaFormularios": InduFormulario})
 
 #VER FORMULARIOS
 def LeerBicis (request):
     print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
 
     FormularioBicicletas=bicicletas.objects.all()
-    contexto={"Bicicetas":FormularioBicicletas}
+    contexto={"Bicicletas":FormularioBicicletas}
     return render (request, "VerFormulario_Bicicletas.html",contexto)
 
 def LeerRepu (request):
@@ -111,31 +113,28 @@ def Busquedabicis(request):
 
     return render (request, "BusquedaBici.html")
 
-def RespuestaBuscarbicis(request):
+def ResultBici(request):
+    print(request.GET)
 
-    respuesta=f"Estoy buscando la bicicleta modelo: {request.GET['modelo']}"
-
+    if request.GET["modelo"]: 
+        print("Entro al if")
+        modelo=request.GET["modelo"]
+        print(modelo)
+        modelos=bicicletas.objects.filter(modelo__icontains=modelo)
+        print(modelos)
+        return render (request,"BusquedaBicicleta.html", {"modelos": modelos},{"modelo":modelo})
+    else:
+        print("No entro al if")
+        respuesta="No enviaste datos"
+        
     return HttpResponse(respuesta)
-#BUSQUEDA REPUESTO
-def BusquedaRepuesto(request):
+    
 
-    return render (request, "Busquedarepu.html")
+    
 
-def RespuestaBuscarRepuesto(request):
 
-    respuesta=f"Estoy buscando el repuesto de tipo: {request.GET['Tipo']}"
 
-    return HttpResponse(respuesta)
-#BUSQUEDA INDUMENTARIA
-def BusquedaIndu(request):
 
-    return render (request, "BusquedaIndumentaria.html")
-
-def RespuestaBuscarIndu(request):
-
-    respuesta=f"Estoy buscando la indumentaria de tipo: {request.GET['Tipo']}"
-
-    return HttpResponse(respuesta)
 
 
 

@@ -6,14 +6,14 @@
 
     <h2 class="text-center">Buscar Bicicletas</h2>
     <br><br>
-    <form class="text-center" action="RespuestaBusquedaBici" method="GET">
+    <form class="text-center" action="{% url 'pepe' %}" method="GET">
         
         
-        <p><input value="Ingrese el modelo..."  type="text" name="modelo" id="Modelo"></p>
+        <p>Ingrese el modelo: <input    type="text" name="modelo" ></p>
         
        <br>
     
-        <input type="submit" value="Buscar"  href="">
+        <input class="btn btn-outline-dark mt-auto"  type="submit" value="Buscar"  >
 
         <br><br>
     </form>
