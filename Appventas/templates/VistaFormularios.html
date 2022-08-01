@@ -4,6 +4,27 @@
 
 {% block bloquecambia %}
 
+
+<br>
+<div class="text-center" class="container px-4 px-lg-1 mt-1">
+<h3>LISTA DE BICICLETAS</h3>
+<br>
+{
+{% for bici in bicicletas  %}
+    <li>{{bici}}</li>
+{% endfor %}
+    }
+<br><br>
+<br>
+<div class="text-center" class="container px-4 px-lg-1 mt-1">
+<h3>LISTA DE REPUESTOS</h3>
+<br>
+{
+{% for repuesto in repuestos  %}
+    <li>{{repuesto}}</li>
+{% endfor %}
+    }
+<br><br>
 <br>
 <div class="text-center" class="container px-4 px-lg-1 mt-1">
 <h3>LISTA DE INDUMENTARIA</h3>
@@ -14,6 +35,9 @@
 {% endfor %}
     }
 <br><br>
+<br><br>
+
+    
 <div class="text-center" ><a class="btn btn-outline-dark mt-auto" href="/Appventas/">VOLVER</a></div>
 
 <br><br>

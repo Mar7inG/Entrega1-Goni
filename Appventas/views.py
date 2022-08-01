@@ -11,6 +11,10 @@ def inicio(request):
 
     return render(request, "inicio.html")
 
+def ListasFormularios(request):
+
+    return render(request, "VistaFormularios.html")
+
 def Comenzar(request):
 
     return render(request, "ComenzarApp.html")
@@ -94,28 +98,17 @@ def RespuestaBuscarbicis(request):
 
     return HttpResponse(respuesta)
 
-
-def LeerBicis(request):
+def LeerFormularios(request):
     
     bicis=bicicletas.objects.all()
-
-    contexto={"Bicicletas":bicis}
-
-    return render(request,"LeerBicicletas.html", contexto)
-
-def LeerRepu(request):
-    
+    indumen=indumentaria.objects.all()
     repues=repuestos.objects.all()
 
-    contexto={"Repuestos":repues}
+    contexto={"Bicicletas":bicis, "Repuestos": repues, "Indumentaria":indumen}
 
-    return render(request,"LeerRepuestos.html", contexto)
-
-def LeerImdum(request):
     
-    indumen=indumentaria.objects.all()
 
-    contexto={"Indumentaria":indumen}
+    return render(request,"VistaFormularios.html", contexto)
 
-    return render (request, "LeerIndumentarias.html", contexto)
-
+   
+    
