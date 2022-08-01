@@ -7,23 +7,16 @@ from Appventas.forms import bicisformulario, repuestosFormulario, indumentariaFo
 # Create your views here.
 
 
-def inicio(request):
+def inicio(request):#Template de Inivcio
 
     return render(request, "inicio.html")
 
-def ListasFormularios(request):
 
-    return render(request, "VistaFormularios.html")
-
-def Comenzar(request):
-
-    return render(request, "ComenzarApp.html")
-
-def Save(request):
+def Save(request):#Template de confirmacion de guardado.
 
     return render(request, "Save.html")
 
-def Formulariobicis(request):
+def Formulariobicis(request):#Template cargar una bici en la tabla
 
     if request.method == 'POST':
         BiciFormulario=bicisformulario(request.POST)
@@ -44,7 +37,7 @@ def Formulariobicis(request):
         return render(request,"biciFormulario.html", {"BiciFormulario": BiciFormulario})
 
 
-def Formulariorepuestos(request):
+def Formulariorepuestos(request):#Template cargar un repuesto en la tabla
 
     if request.method == 'POST':
                         #forms.py
@@ -66,7 +59,7 @@ def Formulariorepuestos(request):
         RepuFormulario=repuestosFormulario()
         return render(request,"repuestoFormulario.html", {"RepuestosFormularios":RepuFormulario})        
 
-def Formularioindumentarias(request):
+def Formularioindumentarias(request):#Template cargar una indumentaria en la tabla
 
 
     if request.method == 'POST':
@@ -99,6 +92,7 @@ def RespuestaBuscarbicis(request):
     return HttpResponse(respuesta)
 
 
+#VER FORMULARIOS
 def LeerBicis (request):
     print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
 
