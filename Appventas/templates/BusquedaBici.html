@@ -1,0 +1,27 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block bloquecambia %}
+
+    <h2 class="text-center">Buscar Bicicletas</h2>
+    <br><br>
+    <form class="text-center" action="RespuestaBusquedaBici" method="GET">
+        
+        
+        <p><input value="Ingrese el modelo..."  type="text" name="modelo" id="Modelo"></p>
+        
+       <br>
+    
+        <input type="submit" value="Buscar"  href="">
+
+        <br><br>
+    </form>
+    <div class="text-center" ><a class="btn btn-outline-dark mt-auto" href="/Appventas/">VOLVER</a></div>
+
+    <br><br>
+    
+
+
+
+{% endblock bloquecambia %}

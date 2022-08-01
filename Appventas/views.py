@@ -80,24 +80,12 @@ def Formularioindumentarias(request):#Template cargar una indumentaria en la tab
         InduFormulario=indumentariaFormularios()
         return render(request,"indumentariaFormulario.html", {"IndumentariaFormularios": InduFormulario})
 
-
-def Buscquedabicis(request):
-
-    return render (request, "Appventas/biciBusqueda.html")
-
-def RespuestaBuscarbicis(request):
-
-    respuesta=f"Estoy buscando la bicicleta modelo: {request.GET['Modelo']}"
-
-    return HttpResponse(respuesta)
-
-
 #VER FORMULARIOS
 def LeerBicis (request):
     print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
 
     FormularioBicicletas=bicicletas.objects.all()
-    contexto={"Bicilcetas":FormularioBicicletas}
+    contexto={"Bicicletas":FormularioBicicletas}
     return render (request, "VerFormulario_Bicicletas.html",contexto)
 
 def LeerRepu (request):
@@ -115,6 +103,40 @@ def LeerIndum (request):
     FormularioIndumentaria=indumentaria.objects.all()
     contexto={"Indumentaria":FormularioIndumentaria}
     return render (request, "VerFormulario_Indumentaria.html",contexto)
+
+
+#BUSQUEDA BICIS
+
+def Busquedabicis(request):
+
+    return render (request, "BusquedaBici.html")
+
+def RespuestaBuscarbicis(request):
+
+    respuesta=f"Estoy buscando la bicicleta modelo: {request.GET['modelo']}"
+
+    return HttpResponse(respuesta)
+#BUSQUEDA REPUESTO
+def BusquedaRepuesto(request):
+
+    return render (request, "Busquedarepu.html")
+
+def RespuestaBuscarRepuesto(request):
+
+    respuesta=f"Estoy buscando el repuesto de tipo: {request.GET['Tipo']}"
+
+    return HttpResponse(respuesta)
+#BUSQUEDA INDUMENTARIA
+def BusquedaIndu(request):
+
+    return render (request, "BusquedaIndumentaria.html")
+
+def RespuestaBuscarIndu(request):
+
+    respuesta=f"Estoy buscando la indumentaria de tipo: {request.GET['Tipo']}"
+
+    return HttpResponse(respuesta)
+
 
 
  
