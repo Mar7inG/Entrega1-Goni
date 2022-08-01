@@ -98,17 +98,32 @@ def RespuestaBuscarbicis(request):
 
     return HttpResponse(respuesta)
 
-def LeerFormularios(request):
-    
-    bicis=bicicletas.objects.all()
-    indumen=indumentaria.objects.all()
-    repues=repuestos.objects.all()
 
-    contexto={"Bicicletas":bicis, "Repuestos": repues, "Indumentaria":indumen}
+def LeerBicis (request):
+    print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
 
-    
+    FormularioBicicletas=bicicletas.objects.all()
+    contexto={"Bicilcetas":FormularioBicicletas}
+    return render (request, "VerFormulario_Bicicletas.html",contexto)
 
-    return render(request,"VistaFormularios.html", contexto)
+def LeerRepu (request):
+    print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
 
-   
-    
+    FormularioRepuestos=repuestos.objects.all()
+    contexto={"Repuestos":FormularioRepuestos}
+    return render (request, "VerFormulario_Repuestos.html",contexto)
+
+
+
+def LeerIndum (request):
+    print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
+
+    FormularioIndumentaria=indumentaria.objects.all()
+    contexto={"Indumentaria":FormularioIndumentaria}
+    return render (request, "VerFormulario_Indumentaria.html",contexto)
+
+
+ 
+
+
+

@@ -3,18 +3,20 @@
 {% load static %}
 
 {% block bloquecambia %}
-
-
-<br>
-<div class="text-center" class="container px-4 px-lg-1 mt-1">
-<h3>LISTA DE BICICLETAS</h3>
-<br>
-{
-{% for bici in bicicletas  %}
-    <li>{{bici}}</li>
-{% endfor %}
-    }
-<br><br>
+<h3 class="text-center" class="btn btn-outline-dark">LISTA DE FORMULARIOS</h3>
+<form action="" method="GET">
+    <br>
+    <div  class="container px-4 px-lg-1 mt-1">
+        <h3>LISTA DE BICICLETAS</h3>
+            <br>
+            {
+            {% for bici in bicicletas  %}
+            <li>{{bici}}</li>
+            {% endfor %}
+            }
+            <br><br>
+    <div  ><a class="btn btn-outline-dark mt-auto" href='{% url "ListaFormularios"  %}'>Ver formulario de Bicicletas</a></div>
+</form>
 <br>
 <div class="text-center" class="container px-4 px-lg-1 mt-1">
 <h3>LISTA DE REPUESTOS</h3>

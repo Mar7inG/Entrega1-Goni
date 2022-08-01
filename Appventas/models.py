@@ -13,6 +13,9 @@ class bicicletas(models.Model):
     color = models.CharField(max_length=30)
     precio = models.IntegerField()
 
+    def __str__(self):
+        return f"{self.id,self.marca, self.modelo,self.rodado,self.color,self.precio}"
+
 
 class repuestos(models.Model):
     id=models.BigAutoField(primary_key=True)
@@ -21,6 +24,9 @@ class repuestos(models.Model):
     modelo = models.CharField(max_length=30)
     fabricante = models.CharField(max_length=30)
     precio = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.id,self.tipo,self.marca, self.modelo,self.fabricante,self.precio}"
     
 
 class indumentaria(models.Model):
@@ -30,3 +36,6 @@ class indumentaria(models.Model):
     modelo = models.CharField(max_length=30)
     talle = models.CharField(max_length=30)
     precio = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.id,self.tipo,self.marca, self.modelo,self.talle,self.precio}"

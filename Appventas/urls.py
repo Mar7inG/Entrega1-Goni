@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from Appventas.views import Formulariobicis, Formularioindumentarias, Formulariorepuestos, inicio, Buscquedabicis, LeerBicis, LeerImdum, LeerRepu, ListasFormularios
+from Appventas.views import Formulariobicis, Formularioindumentarias, Formulariorepuestos, inicio, Buscquedabicis
+from Appventas.views import LeerIndum, LeerBicis, LeerRepu
                                   
 
 
@@ -12,8 +13,7 @@ urlpatterns = [
     path('indu_formulario/', Formularioindumentarias, name="indu_formulario"),
     path('busquedaBicis/', Buscquedabicis, name="BusquedaBicis"),
     path('buscarBicis/', Buscquedabicis, name="BusquedaBicis"),
-    path('Formularios', LeerFormularios, name="LeerBicis"),
-    #path('ListaFormularios/leerRepuestos/', LeerRepu, name="LeerRepues") ,   
-    #path('ListaFormularios/leerIndum/', LeerImdum, name="Leerindumentria"),
-    path('ListaFormularios/', ListasFormularios, name="ListaFormularios")
+    path('Leerindumentria/', LeerIndum, name="Leerindume"),
+    path('LeerBicicletas/', LeerBicis, name="LeerBicis"),
+    path('LeerRepuestos/',LeerRepu, name="LeerRepues") ,     
 ]
