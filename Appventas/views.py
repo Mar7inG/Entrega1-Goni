@@ -85,7 +85,7 @@ def LeerBicis (request):
     print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
 
     FormularioBicicletas=bicicletas.objects.all()
-    contexto={"Bicicletas":FormularioBicicletas}
+    contexto={"Bicicetas":FormularioBicicletas}
     return render (request, "VerFormulario_Bicicletas.html",contexto)
 
 def LeerRepu (request):
