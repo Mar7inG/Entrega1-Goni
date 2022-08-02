@@ -5,10 +5,10 @@
 {% block bloquecambia %}
 
 <div  class="container px-4 px-lg-1 mt-1">
-    <h3>LISTA DE INDUMENTARIA</h3>
+    <h3>Lista de Indumentaria</h3>
     <br>
-        {% for Indumen in Indumentaria  %}
-        <li>{{Indumen}}</li>
+        {% for Item in Indumentaria  %}
+        <li>Tipo: {{Item.tipo}}. Marca: {{Item.marca}}. Modelo: {{Item.modelo}}. Fabricante: {{Item.fabricante}}. Precio: ${{Item.precio}}.</li>
         {% endfor %}
         
     <br><br>

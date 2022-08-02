@@ -4,9 +4,9 @@
 
 {% block bloquecambia %}
 
-    <h2 class="text-center">Formulario - Agregar bicicletas</h2>
+    <h2 >Formulario - Agregar bicicletas</h2>
     <br><br>
-    <form class="text-center" action="" method="POST">{% csrf_token %}
+    <form  action="" method="POST">{% csrf_token %}
         
         <!--<p> Marca: <input type="text" name="Marca"></p>
         <p> Modelo : <input type="text" name="Modelo"></p>
@@ -15,13 +15,16 @@
         <p> Fecha de fabricacion : <input type="date" name="Fecha_Fabricacion"></p>
         <p> Precio : <input type ="number"    name="Precio"></p>
         -->
-    
-        {{ BiciFormulario.as_table}}
+        <table>
+             {{ BiciFormulario.as_table}}
+        </table>
         <br>
         <br>
-    
-        <input type="submit" value="Enviar"  href="">
-        <br><br>
+        
+        <input class="btn btn-outline-dark mt-auto" type="submit" value="Enviar"  href="">
+        <br><br><br>
+        <div class="text-center"><a  class="btn btn-outline-dark mt-auto" href="/Appventas/">Volver</a></div>
+        <br>
     </form>
     
 

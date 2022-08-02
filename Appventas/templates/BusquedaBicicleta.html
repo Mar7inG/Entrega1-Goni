@@ -4,13 +4,13 @@
 
 {% block bloquecambia %}
 
-    <p>Se busco las Bicicletas con modelos: {{modelo}}</p>
+    <h2>Se busco las Bicicletas con modelos: {{modelo}}</h2>
 
     
     {% if modelos %}
         
         {% for item in modelos  %}
-            <li>{{item.modelo}}</li>
+        <li>Marca: {{item.marca}}. Modelo: {{item.modelo}}. Rodado: {{item.rodado}}. Color: {{item.color}}. Precio: ${{item.precio}}.</li>
         {% endfor %}
     {% else %}
         <p>No hay resultados.</p>        
