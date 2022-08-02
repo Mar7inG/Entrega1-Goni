@@ -128,6 +128,50 @@ def ResultBici(request):
         respuesta="No enviaste datos"
         
     return HttpResponse(respuesta)
+
+#BUSQUEDA INDUMENTARIA
+def Busquedabicis(request):
+
+    return render (request, "BusquedaIndu.html")
+
+def ResultBici(request):
+    print(request.GET)
+
+    if request.GET["tipo"]: 
+        print("Entro al if")
+        tipo=request.GET["tipo"]
+        print(tipo)
+        tipos=indumentaria.objects.filter(tipo__icontains=tipo)
+        print(tipos)
+        return render (request,"BusquedaIndumentaria.html", {"tipos": tipos},{"tipo":tipo})
+    else:
+        print("No entro al if")
+        respuesta="No enviaste datos"
+        
+    return HttpResponse(respuesta)
+        
+    return HttpResponse(respuesta)
+
+#BUSQUEDA RESPUESTO
+def Busquedabicis(request):
+
+    return render (request, "BusquedaRepu.html")
+
+def ResultBici(request):
+    print(request.GET)
+
+    if request.GET["tipo"]: 
+        print("Entro al if")
+        tipo=request.GET["tipo"]
+        print(tipo)
+        tipos=repuestos.objects.filter(tipo__icontains=tipo)
+        print(tipos)
+        return render (request,"BusquedaRepuesto.html", {"tipos": tipos},{"tipo":tipo})
+    else:
+        print("No entro al if")
+        respuesta="No enviaste datos"
+        
+    return HttpResponse(respuesta)
     
 
     

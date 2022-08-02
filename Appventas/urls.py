@@ -11,22 +11,21 @@ from Appventas.views import ResultBici
 urlpatterns = [
    
     path('', inicio, name="INICIO"),
+    #CARGAR DATOS
     path('FormularioBici/', Formulariobicis, name="bici_formulario"),
     path('repu_formulario/', Formulariorepuestos, name="repu_formulario"),
     path('indu_formulario/', Formularioindumentarias, name="indu_formulario"),
+    #VER FORULARIOS
     path('Leerindumentria/', LeerIndum, name="Leerindume"),
     path('LeerBicicletas/', LeerBicis, name="LeerBicis"),
     path('LeerRepuestos/',LeerRepu, name="LeerRepues") ,     
-
+    #BUSCAR
     #en el template. con "direccion"(sin /) entre las comillas, y con "{% url 'name'%}" va el name.         
     path('BusquedaBici/', Busquedabicis, name="Buscar1"),#Ir pagina de busqueda bicis
-    path('IrBici/', ResultBici, name="pepe"),#Buscar bici
-
-
-   # path('buscarRepuesto/', BusquedaRepuesto, name="Buscar2"),#Ir pagina de busqueda repuestos
-   # path('busquedaRepuesto/', RespuestaBuscarRepuesto, name="busqueda2"),#Buscar repuesto
-
-
-    #path('buscarIndumentaria/', BusquedaIndu, name="Buscar3"),#Ir pagina de busqueda indumentaria
-    #path('BusquedaIndumentaria/', RespuestaBuscarIndu, name="busqueda2"),#Buscar indumentaria
+    path('IrBici/', ResultBici, name="Busqueda1"),#Buscar bici
+    path('BuscarRepuesto/',Busquedarepues,name="Buscar2"),
+    path('IrRepues/',ResultRepues,name="Busqueda2"),
+    path('BuscarIndumentaria/', BusquedaIndu, name="Buscar3"),
+    path('Irndumentaria/', ResultIndu, name="busqueda3"),
 ]
+
