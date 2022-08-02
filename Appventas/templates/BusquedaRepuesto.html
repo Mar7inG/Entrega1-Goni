@@ -1,0 +1,27 @@
+{% extends 'Padre.html' %}
+
+{% load static %}
+
+{% block bloquecambia %}
+
+    <p>Se busco el repuesto: {{tipo}}</p>
+
+    
+    {% if tipo %}
+         
+        {% for item in tipos  %}
+        <li>Tipo: {{item.tipo}}. Marca: {{item.marca}}. Modelo: {{item.modelo}}. Talle: {{item.talle}}. Precio: ${{item.precio}}.</li>
+        {% endfor %}
+    {% else %}
+        <p>No hay resultados.</p>        
+        
+    {% endif %}
+    <br>
+    <div class="text-center" ><a class="btn btn-outline-dark mt-auto" href="/Appventas/">VOLVER</a></div>
+
+    <br>
+        
+
+
+
+{% endblock bloquecambia %}

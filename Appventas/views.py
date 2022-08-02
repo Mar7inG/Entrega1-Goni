@@ -122,19 +122,19 @@ def ResultBici(request):
         print(modelo)
         modelos=bicicletas.objects.filter(modelo__icontains=modelo)
         print(modelos)
-        return render (request,"BusquedaBicicleta.html", {"modelos": modelos},{"modelo":modelo})
+        return render (request,"BusquedaBicicleta.html", {"modelos": modelos , "modelo":modelo})
     else:
         print("No entro al if")
         respuesta="No enviaste datos"
-        
-    return HttpResponse(respuesta)
+        return render(respuesta,"BusquedaBicicleta.html")
+    
 
 #BUSQUEDA INDUMENTARIA
-def Busquedabicis(request):
+def BusquedaIndu(request):
 
     return render (request, "BusquedaIndu.html")
 
-def ResultBici(request):
+def ResultIndu(request):
     print(request.GET)
 
     if request.GET["tipo"]: 
@@ -143,21 +143,19 @@ def ResultBici(request):
         print(tipo)
         tipos=indumentaria.objects.filter(tipo__icontains=tipo)
         print(tipos)
-        return render (request,"BusquedaIndumentaria.html", {"tipos": tipos},{"tipo":tipo})
+        return render (request,"BusquedaIndumentaria.html", {"tipos": tipos ,"tipo":tipo})
     else:
         print("No entro al if")
         respuesta="No enviaste datos"
-        
-    return HttpResponse(respuesta)
-        
-    return HttpResponse(respuesta)
+        return render(respuesta,"BusquedaIndumentaria.html")
+ 
 
 #BUSQUEDA RESPUESTO
-def Busquedabicis(request):
+def BusquedaRepues(request):
 
     return render (request, "BusquedaRepu.html")
 
-def ResultBici(request):
+def ResultRepues(request):
     print(request.GET)
 
     if request.GET["tipo"]: 
@@ -166,12 +164,11 @@ def ResultBici(request):
         print(tipo)
         tipos=repuestos.objects.filter(tipo__icontains=tipo)
         print(tipos)
-        return render (request,"BusquedaRepuesto.html", {"tipos": tipos},{"tipo":tipo})
+        return render (request,"BusquedaRepuesto.html", {"tipos": tipos , "tipo":tipo})
     else:
         print("No entro al if")
         respuesta="No enviaste datos"
-        
-    return HttpResponse(respuesta)
+        return render(respuesta,"BusquedaRepuesto.html")
     
 
     

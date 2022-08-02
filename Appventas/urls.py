@@ -4,6 +4,7 @@ from Appventas.views import Formulariobicis, Formularioindumentarias, Formulario
 from Appventas.views import LeerIndum, LeerBicis, LeerRepu
 
 from Appventas.views import ResultBici
+from Appventas.views import BusquedaIndu, BusquedaRepues, ResultIndu, ResultRepues
 #from Appventas.views import BusquedaIndu, BusquedaRepuesto, RespuestaBuscarIndu, RespuestaBuscarRepuesto
                                   
 
@@ -23,9 +24,9 @@ urlpatterns = [
     #en el template. con "direccion"(sin /) entre las comillas, y con "{% url 'name'%}" va el name.         
     path('BusquedaBici/', Busquedabicis, name="Buscar1"),#Ir pagina de busqueda bicis
     path('IrBici/', ResultBici, name="Busqueda1"),#Buscar bici
-    path('BuscarRepuesto/',Busquedarepues,name="Buscar2"),
+    path('BuscarRepuesto/',BusquedaRepues,name="Buscar2"),
     path('IrRepues/',ResultRepues,name="Busqueda2"),
-    path('BuscarIndumentaria/', BusquedaIndu, name="Buscar3"),
-    path('Irndumentaria/', ResultIndu, name="busqueda3"),
+    path('BuscarIndumentaria/',BusquedaIndu, name="Buscar3"),
+    path('Irndumentaria/', ResultIndu, name="Busqueda3"),
 ]
 
