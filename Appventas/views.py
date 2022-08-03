@@ -1,14 +1,22 @@
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render
-from Appventas.models import bicicletas, repuestos, indumentaria
-from Appventas.forms import bicisformulario, repuestosFormulario, indumentariaFormularios
-from Appventas.forms import enviarMensaje
+from Appventas.models import ( 
+                    bicicletas, repuestos, indumentaria,EnviarMensajes,
+)
+from Appventas.forms import (
+    bicisformulario, repuestosFormulario, indumentariaFormularios, enviarMensaje
+)
+
 
 # Views de simple acceso
 def Nosotros(request):#Template de Nostros
 
     return render(request, "QuienesSomos.html")
+
+def IrEnviarMensaje(request):#Template de Nostros
+
+    return render(request, "EnviarMensaje.html")
 
 def Formularios(request):#Template de Formularios
 
@@ -26,12 +34,12 @@ def EnviarMensaje(request):
 
             if MensajeEnviado.is_valid():
                 data=MensajeEnviado.cleaned_data# si le pongo parentesis o corchetes y entre comillas una variable en particular pide solo esa
-                mensaje=enviarMensaje(nombre=data["Nombre"],correo=["Correo"],telefono=["Telefono"],mensaje=["Mensaje"])
+                mensaje=EnviarMensajes(nombre=data["Nombre"],correo=["Correo"],telefono=["Telefono"],mensaje=["Mensaje"])
                 mensaje.save()
-                return render(request,"MensajeEnviado.html")
+                return render(request,"Save.html")
     else:
         MensajeEnviado=enviarMensaje()
-        return render (request,"EnviarMensaje.html",{"MensajeEnviado":MensajeEnviado})
+        return render (request,"EnviarMensaje.html",{"MensajeaEnviar":MensajeEnviado})
 
 
 #Formularios

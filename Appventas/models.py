@@ -40,7 +40,7 @@ class indumentaria(models.Model):
     def __str__(self):
         return f"{self.id,self.tipo,self.marca, self.modelo,self.talle,self.precio}"
 
-class EnviarMensaje(models.Model):
+class EnviarMensajes(models.Model):
 
     nombre=models.CharField(max_length=30)
     correo=models.EmailField(max_length=30)

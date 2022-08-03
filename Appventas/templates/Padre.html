@@ -24,7 +24,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/Appventas/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Nosotros' %}">Nosotros</a></li>
-                       <li class="nav-item"><a class="nav-link" href="{% url 'Formularios' %}">Formularios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Formularios' %}">Formularios</a></li>
                         
                     </ul><!--
                 <form class="d-flex">
@@ -118,6 +118,10 @@
         {% endblock bloquecambia %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active text-white aria-current="page" href="{% url 'EnviarMensaje' %}">Contactarse</a></li>
+                 <!--<li class="nav-item"><a class="nav-link" href="{% url 'Nosotros' %}">Nosotros</a></li>-->
+            </ul>
             <div class="container"><p class="m-0 text-center text-white">Martin Goñi & Martin Bisceglia &copy; Coder House 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
