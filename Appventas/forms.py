@@ -29,4 +29,5 @@ class enviarMensaje(forms.Form):
     Correo=forms.EmailField()
     Telefono=forms.IntegerField()
     Mensaje=forms.CharField()
+    leido=forms.BooleanField()
 

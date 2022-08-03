@@ -46,3 +46,4 @@ class EnviarMensaje(models.Model):
     correo=models.EmailField(max_length=30)
     telefono=models.IntegerField()
     mensaje=models.CharField(max_length=100)
+    leido=models.BooleanField(False)
