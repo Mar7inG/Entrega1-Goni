@@ -5,13 +5,18 @@ from Appventas.views import LeerIndum, LeerBicis, LeerRepu
 
 from Appventas.views import ResultBici
 from Appventas.views import BusquedaIndu, BusquedaRepues, ResultIndu, ResultRepues
+from Appventas.views import Nosotros
+from Appventas.views import Formularios
 #from Appventas.views import BusquedaIndu, BusquedaRepuesto, RespuestaBuscarIndu, RespuestaBuscarRepuesto
                                   
 
 
 urlpatterns = [
-   
+    
+     #Simple acceso
     path('', inicio, name="INICIO"),
+    path('Formularios', Formularios ,name="Formularios"),
+    path('Nosotros/', Nosotros,name="Nosotros"),
     #CARGAR DATOS
     path('FormularioBici/', Formulariobicis, name="bici_formulario"),
     path('repu_formulario/', Formulariorepuestos, name="repu_formulario"),

@@ -22,3 +22,11 @@ class indumentariaFormularios(forms.Form):
     Modelo = forms.CharField()
     Talle = forms.CharField()
     Precio = forms.IntegerField()
+
+class enviarMensaje(forms.Form):
+
+    Nombre=forms.CharField()
+    Correo=forms.EmailField()
+    Telefono=forms.IntegerField()
+    Mensaje=forms.CharField()
+

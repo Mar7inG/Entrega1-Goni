@@ -3,15 +3,38 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from Appventas.models import bicicletas, repuestos, indumentaria
 from Appventas.forms import bicisformulario, repuestosFormulario, indumentariaFormularios
+from Appventas.forms import enviarMensaje
 
-# Create your views here.
+# Views de simple acceso
+def Nosotros(request):#Template de Nostros
 
+    return render(request, "QuienesSomos.html")
+
+def Formularios(request):#Template de Formularios
+
+    return render(request, "Formularios.html")
 
 def inicio(request):#Template de Inivcio
 
     return render(request, "inicio.html")
 
+#Enviar Mensaje
+def EnviarMensaje(request):
+    
+    if request.method == 'POST':
+            MensajeEnviado=enviarMensaje(request.POST)
 
+            if MensajeEnviado.is_valid():
+                data=MensajeEnviado.cleaned_data# si le pongo parentesis o corchetes y entre comillas una variable en particular pide solo esa
+                mensaje=enviarMensaje(nombre=data["Nombre"],correo=["Correo"],telefono=["Telefono"],mensaje=["Mensaje"])
+                mensaje.save()
+                return render(request,"MensajeEnviado.html")
+    else:
+        MensajeEnviado=enviarMensaje()
+        return render (request,"EnviarMensaje.html",{"MensajeEnviado":MensajeEnviado})
+
+
+#Formularios
 def Save(request):#Template de confirmacion de guardado.
 
     return render(request, "Save.html")
