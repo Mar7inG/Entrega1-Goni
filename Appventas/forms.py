@@ -1,6 +1,6 @@
 from django import forms
 
-class bicisformulario(forms.Form):
+class bicisFormulario(forms.Form):
 
     Marca = forms.CharField()
     Modelo = forms.CharField()
@@ -27,7 +27,7 @@ class enviarMensaje(forms.Form):
 
     Nombre=forms.CharField()
     Correo=forms.EmailField()
-    Telefono=forms.IntegerField()
+    Telefono=forms.CharField()
     Mensaje=forms.CharField()
-    leido=forms.BooleanField()
+    
 

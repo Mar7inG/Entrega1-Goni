@@ -14,13 +14,13 @@
     </div>
 </header>
  <br>
- <h2 >Complete los datos para enviar el mensaje:</h2>
+ <h3 >Complete los datos para enviar el mensaje:</h3>
  <br><br>
- <form  class="text-center" action="{% url 'EnviarMensaje' %}" method="POST">{% csrf_token %}
+ <form  class="text-center" action="" method="POST">{% csrf_token %}
      
     
      <table>
-          {{MensajeaEnviar.as_table}}
+          {{MensajeEnviar.as_table}}
      </table>
      <br>
      <br>

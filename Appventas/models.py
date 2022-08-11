@@ -44,6 +44,8 @@ class EnviarMensajes(models.Model):
 
     nombre=models.CharField(max_length=30)
     correo=models.EmailField(max_length=30)
-    telefono=models.IntegerField()
+    telefono=models.CharField(max_length=30)
     mensaje=models.CharField(max_length=100)
-    leido=models.BooleanField(False)
+       
+    def __str__(self):
+        return f"{self.nombre,self.correo,self.telefono, self.mensaje}"

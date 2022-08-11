@@ -5,7 +5,7 @@ from Appventas.models import (
                     bicicletas, repuestos, indumentaria,EnviarMensajes,
 )
 from Appventas.forms import (
-    bicisformulario, repuestosFormulario, indumentariaFormularios, enviarMensaje
+    bicisFormulario, repuestosFormulario, indumentariaFormularios, enviarMensaje
 )
 
 
@@ -14,9 +14,7 @@ def Nosotros(request):#Template de Nostros
 
     return render(request, "QuienesSomos.html")
 
-def IrEnviarMensaje(request):#Template de Nostros
 
-    return render(request, "EnviarMensaje.html")
 
 def Formularios(request):#Template de Formularios
 
@@ -27,19 +25,22 @@ def inicio(request):#Template de Inivcio
     return render(request, "inicio.html")
 
 #Enviar Mensaje
-def EnviarMensaje(request):
-    
+def IrEnviarMensaje(request):
+    print("method:", request.method)
     if request.method == 'POST':
+            print("1° IF")
             MensajeEnviado=enviarMensaje(request.POST)
 
             if MensajeEnviado.is_valid():
+                print("2do IF")
                 data=MensajeEnviado.cleaned_data# si le pongo parentesis o corchetes y entre comillas una variable en particular pide solo esa
                 mensaje=EnviarMensajes(nombre=data["Nombre"],correo=["Correo"],telefono=["Telefono"],mensaje=["Mensaje"])
                 mensaje.save()
                 return render(request,"Save.html")
     else:
+        print("method:", request.method)
         MensajeEnviado=enviarMensaje()
-        return render (request,"EnviarMensaje.html",{"MensajeaEnviar":MensajeEnviado})
+        return render (request,"EnviarMensaje.html",{"MensajeEnviar":MensajeEnviado})
 
 
 #Formularios
@@ -50,7 +51,7 @@ def Save(request):#Template de confirmacion de guardado.
 def Formulariobicis(request):#Template cargar una bici en la tabla
 
     if request.method == 'POST':
-        BiciFormulario=bicisformulario(request.POST)
+        BiciFormulario=bicisFormulario(request.POST)
         print("method:", request.method) #Va  a imprimir por terminal el método que utilizamos. 
         print("Formulario:",BiciFormulario ) 
 
@@ -64,7 +65,7 @@ def Formulariobicis(request):#Template cargar una bici en la tabla
        # else:
         #    return render (request,"inicio2.html")
     else:
-        BiciFormulario=bicisformulario()
+        BiciFormulario=bicisFormulario()
         return render(request,"FormularioBicicletas.html", {"BiciFormulario": BiciFormulario})
 
 

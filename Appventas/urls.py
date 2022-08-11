@@ -14,11 +14,11 @@ from Appventas.views import IrEnviarMensaje
 
 urlpatterns = [
     
-     #Simple acceso
+     #Simple accesow
     path('', inicio, name="INICIO"),
     path('Formularios', Formularios ,name="Formularios"),
     path('Nosotros/', Nosotros,name="Nosotros"),
-    path('EnviarMensaje/', IrEnviarMensaje,name="EnviarMensaje"),
+    path('EnviarMensaje/',IrEnviarMensaje,name="EnviarMensaje"),
     #CARGAR DATOS
     path('FormularioBici/', Formulariobicis, name="bici_formulario"),
     path('repu_formulario/', Formulariorepuestos, name="repu_formulario"),
