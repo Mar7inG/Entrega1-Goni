@@ -17,7 +17,6 @@ class repuestosFormulario(forms.Form):
     Tipo = forms.CharField()
     Marca = forms.CharField()
     Modelo = forms.CharField()
-    Fabricante = forms.CharField()
     Precio = forms.IntegerField()
 
 class indumentariaFormularios(forms.Form):
@@ -27,6 +26,12 @@ class indumentariaFormularios(forms.Form):
     Talle = forms.CharField()
     Precio = forms.IntegerField()
 
+class accesoriosFormulario(forms.Form):
+
+    Tipo = forms.CharField()
+    Marca = forms.CharField()
+    Modelo = forms.CharField()
+    Precio = forms.IntegerField()
 class empleadosFormulario(forms.Form):
 
     Nombre=forms.CharField(max_length=30)

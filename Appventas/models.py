@@ -40,6 +40,12 @@ class indumentaria(models.Model):
     def __str__(self):
         return f"{self.tipo,self.marca, self.modelo,self.talle,self.precio}"
 
+class accesorios(models.Model):#Borre fabricante
+    tipo = models.CharField(max_length=30)
+   
+    def __str__(self):
+        return f"{self.tipo,self.marca, self.modelo,self.precio}"
+
 class perfiles(models.Model):
     nombre=models.CharField(max_length=30)
     apellido=models.CharField(max_length=30)
