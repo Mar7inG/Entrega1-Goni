@@ -104,7 +104,7 @@ def Formulariorepuestos(request):#Template cargar un repuesto en la tabla
             data=RepuFormulario.cleaned_data
             #En la tabla que creo con la clase (models) le cargo los datos del formulario de Django(forms)
                      #models.py   (como se lee esto?: tipo=data['Tipo'])          
-            repuesto=repuestos(tipo=data['Tipo'],marca=data['Marca'],modelo=data['Modelo'],fabricante=data['Fabricante'],precio=data['Precio'],)
+            repuesto=repuestos(tipo=data['Tipo'],marca=data['Marca'],modelo=data['Modelo'],precio=data['Precio'],)
             repuesto.save()
             return render(request, "Save.html")
         else:
