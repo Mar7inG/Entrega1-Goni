@@ -10,7 +10,7 @@
     {% if modelos %}
         
         {% for item in modelos  %}
-        <li>Marca: {{item.marca}}. Modelo: {{item.modelo}}. Rodado: {{item.rodado}}. Color: {{item.color}}. Precio: ${{item.precio}}.</li>
+        <li>Codigo: {{item.codigo}}. Marca: {{item.marca}}. Modelo: {{item.modelo}}. Rodado: {{item.rodado}}. Color: {{item.color}}. Descripcion: {{item.descripcion}}. Precio: ${{item.precio}}.</li>
         {% endfor %}
     {% else %}
         <p>No hay resultados.</p>        

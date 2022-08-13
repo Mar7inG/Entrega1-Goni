@@ -7,10 +7,10 @@
     <p>Se busco el repuesto: {{tipo}}</p>
 
     
-    {% if tipo %}
+    {% if tipos %}
          
         {% for item in tipos  %}
-        <li>Tipo: {{item.tipo}}. Marca: {{item.marca}}. Modelo: {{item.modelo}}. Talle: {{item.talle}}. Precio: ${{item.precio}}.</li>
+        <li>Codigo: {{item.codigo}}. Tipo: {{item.tipo}}. Marca: {{item.marca}}. Modelo: {{item.modelo}}. Descripcion: {{item.descripcion}}. Precio: ${{item.precio}}.</li>
         {% endfor %}
     {% else %}
         <p>No hay resultados.</p>        

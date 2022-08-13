@@ -4,12 +4,12 @@
 
 {% block bloquecambia %}
 
-    <h2 class="text-center">Buscar Indumentaria</h2>
+    <h2 class="text-center">Buscar Accesorios</h2>
     <br><br>
-    <form class="text-center" action="{% url 'Busqueda3' %}" method="GET">
+    <form class="text-center" action="{% url 'ResultAcc' %}" method="GET">{% csrf_token %}
         
         
-        <p>Ingrese el modelo: <input    type="text" name="tipo" ></p>
+        <p>Ingrese el Tipo: <input    type="text" name="tipo" ></p>
         
        <br>
     

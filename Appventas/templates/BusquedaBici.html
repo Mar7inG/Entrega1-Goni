@@ -6,7 +6,7 @@
 
     <h2 class="text-center">Buscar Bicicletas</h2>
     <br><br>
-    <form class="text-center" action="{% url 'Busqueda1' %}" method="GET">
+    <form class="text-center" action="{% url 'Busqueda1' %}" method="GET">{% csrf_token %}
         
         
         <p>Ingrese el modelo: <input    type="text" name="modelo" ></p>
