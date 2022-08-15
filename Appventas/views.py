@@ -7,7 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from Appventas.models import accesorios, bicicletas, repuestos, indumentaria,EnviarMensajes
 from Appventas.forms import accesoriosFormulario, bicisFormulario, repuestosFormulario, indumentariaFormularios, enviarMensaje
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 # Views de simple acceso
 def Nosotros(request):#Template de Nostros
@@ -386,8 +387,31 @@ def editarrepuestos(request, id):
         })
         return render(request,"EditarRepuestos.html", {"RepuFormulario": repuFormulario , "id": repuesto.id})
 
+#LOGIN
+def iniciar_sesion(request):
 
+    if request.method == "POST":
+        form=AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            usuario=form.cleaned_data.get('username')
+            clave=form.cleaned_data.get('password')
+
+            user=authenticate(username=usuario,password=clave)
+
+            if user is not None:
+                login(request,user)
+
+                return render(request, "AppVentas/inicio.html", {"mensaje:"f"Bienvenido {usuario}"})
+            else:
+
+                return render (request, "AppVentas/inicio.html", {"mensaje":"Error, datos incorrecto"})
+        else:
+                return render (request, "AppVentas/inicio.html", {"mensaje":"Error, formulario erroneo"}) 
     
+    form = AuthenticationForm()
+    return render (request, "AppVentas/inicio.html", {'form':form})
+ 
 
 
 

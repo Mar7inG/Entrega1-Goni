@@ -1,0 +1,20 @@
+{% extends 'Padre.html' %}
+
+{% load static %}
+
+{% block bloquecambia %}
+
+<br>
+<div class="text-center" class="container px-4 px-lg-1 mt-1">
+    <form action="" method="POST">
+     {% csrf_token %}
+
+
+     {{form.as_p}}
+
+     <button type="submit">Iniciar Sesion </button>
+    </form>
+<div class="text-center" ><a class="btn btn-outline-dark mt-auto" href="/Appventas/">Volver</a></div>
+
+<br><br>
+{% endblock bloquecambia %}
