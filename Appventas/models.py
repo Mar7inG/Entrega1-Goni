@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+from django.contrib.auth.models import User
 
 
 
@@ -82,3 +83,12 @@ class EnviarMensajes(models.Model):
         return f"{self.nombre,self.correo,self.telefono, self.mensaje}"
 
 #Comentar todo: selecciono . 1°ctrl+k . 2°ctrl+c (comentar) 2°ctrl+u (descomentar)
+
+#Avatar
+class Avatar(models.Model):
+
+    #vinculo con el usuario
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    #Subcarpeta avatares de media
+    imagen=models.ImageField(upload_to='avatares', null=True,blank=True)
+    

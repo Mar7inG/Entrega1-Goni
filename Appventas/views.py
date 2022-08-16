@@ -3,13 +3,15 @@
 
 
 from multiprocessing import context
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from Appventas.models import accesorios, bicicletas, repuestos, indumentaria,EnviarMensajes
 from Appventas.forms import accesoriosFormulario, bicisFormulario, repuestosFormulario, indumentariaFormularios, enviarMensaje
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-
+from django.contrib.auth.mixins import LoginRequiredMixin #solo funciona con las vistas basadas en clases
+from django.contrib.auth.decorators import login_required#decorador para vistas basadas en funciones.Aumenta la funcionalidad de una funcion.
 # Views de simple acceso
 def Nosotros(request):#Template de Nostros
 
@@ -402,25 +404,63 @@ def iniciar_sesion(request):
             if user is not None:
                 login(request,user)
 
-                return render(request, "AppVentas/inicio.html", {"mensaje:"f"Bienvenido {usuario}"})
+                return render(request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})
             else:
 
-                return render (request, "AppVentas/inicio.html", {"mensaje":"Error, datos incorrecto"})
+                form = AuthenticationForm()
+                return render (request, "LoginError.html", {"mensaje":"Error!",'form':form}) 
         else:
-                return render (request, "AppVentas/inicio.html", {"mensaje":"Error, formulario erroneo"}) 
-    
-    form = AuthenticationForm()
-    return render (request, "AppVentas/inicio.html", {'form':form})
- 
+                form = AuthenticationForm()
+                return render (request, "LoginError.html", {"mensaje":"Error, datos incorrectos",'form':form}) 
+    else:
+        form = AuthenticationForm()
+        return render (request, "Login.html", {'form':form})
+#Registrarse
+def IrRegistrarse(request):
+    return render (request, "LoginRegistro.html")
 
+def registrarse(request):
 
+    if request.method =="POST":
+        print("1)method:", request.method)
+        form=UserCreationForm(request.POST)
+        #form=UserRegisterForm(request.POST)
+        if form.is_valid():
+            print("2)method:", request.method)
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request,'Save.html',{"mensaje":f"Usuario {username} creado."})
+        else:
+            form=UserCreationForm()
+            return render (request, 'LoginRegistro.html',{"mensaje":f"Usuario no valido","form": form})
+        
+    else:
+        form=UserCreationForm()
+        return render (request,'LoginRegistro.html', {"form": form})
 
+# #Perfil Usuario
+def LoginPerfil(request):
+    return render(request,'LoginPerfil.html')
+# def iniciar_sesion(request):
 
+#     if request.method == "POST":
+#         user=authenticate(username=usuario,password=clave)
 
+#         if user is not None:
+#                 login(request,user)
 
+#                 return render(request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+#         else:
 
- 
-
+#                 form = AuthenticationForm()
+#                 return render (request, "LoginError.html", {"mensaje":"Error!",'form':form}) 
+#         else:
+#                 form = AuthenticationForm()
+#                 return render (request, "LoginError.html", {"mensaje":"Error, datos incorrectos",'form':form}) 
+#     else:
+        
+#         user=authenticate(username=usuario,password=clave)
+#         return render (request, "LoginPerfil.html", {"mensaje":f"Bienvenido {usuario}"})
 
 
 

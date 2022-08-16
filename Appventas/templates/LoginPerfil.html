@@ -1,0 +1,29 @@
+{% extends 'Padre.html' %}
+
+{% load static %}
+
+{% block bloquecambia %}
+
+<br>
+
+<div class="text-center" class="btn btn-outline-dark mt-auto">
+    <br>
+    <h3>Perfil</h3>
+    <h4>Bien venido {{user.username}}</h4>
+    
+    <form action="" method="POST">
+     {% csrf_token %}
+
+
+     
+
+     <button type="submit" class="btn btn-outline-dark mt-auto" >Editar </button>
+     
+    </form>
+    
+    <br>
+    <br>
+<div class="text-center" ><a class="btn btn-outline-dark mt-auto" href="{% url 'INICIO' %}">Volver</a></div>
+
+<br><br>
+{% endblock bloquecambia %}

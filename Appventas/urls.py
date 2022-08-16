@@ -1,13 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from Appventas.views import BusquedaAcc, Formularioaccesorios, Formulariobicis, Formularioindumentarias, Formulariorepuestos, LeerAcc, ResultAcc, editarbicis, editarrepuestos, eliminarIndumentaria, eliminaraccesorios, eliminarbici, eliminarrepuestos, iniciar_sesion, inicio, Busquedabicis
-from Appventas.views import LeerIndum, LeerBicis, LeerRepu
-
-from Appventas.views import ResultBici
-from Appventas.views import BusquedaIndu, BusquedaRepues, ResultIndu, ResultRepues
-from Appventas.views import Nosotros
-from Appventas.views import Formularios
-from Appventas.views import IrEnviarMensaje
+from Appventas.views import (
+    BusquedaAcc, Formularioaccesorios, Formulariobicis, Formularioindumentarias, Formulariorepuestos, LeerAcc, LoginPerfil, ResultAcc, editarbicis,
+    editarrepuestos, eliminarIndumentaria, eliminaraccesorios, eliminarbici, eliminarrepuestos, iniciar_sesion, inicio, 
+    Busquedabicis, registrarse, LeerIndum, LeerBicis, LeerRepu, ResultBici, BusquedaIndu, BusquedaRepues, ResultIndu, ResultRepues,
+    Nosotros, Formularios, IrEnviarMensaje, IrRegistrarse
+)
+from django.contrib.auth.views import LogoutView
 #from Appventas.views import BusquedaIndu, BusquedaRepuesto, RespuestaBuscarIndu, RespuestaBuscarRepuesto
                                   
 
@@ -49,6 +48,11 @@ urlpatterns = [
     path('editarrepu/<int:id>', editarrepuestos, name="Editarrepu"),
     #LOGIN
     path('login', iniciar_sesion, name='Login'),
+    path('IrRegistro', IrRegistrarse,name="IrRegistro" ),
+    path('registrarse', registrarse, name='Registrarse'),
+    path('logout', LogoutView.as_view(template_name='logout.html'),name='Logout'),
+    path('loginPerfil', LoginPerfil, name="Perfil"),
+    #Imagenes/Avatars
     
 ]
 

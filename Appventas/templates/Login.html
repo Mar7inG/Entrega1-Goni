@@ -5,15 +5,24 @@
 {% block bloquecambia %}
 
 <br>
-<div class="text-center" class="container px-4 px-lg-1 mt-1">
+
+<div class="text-center" class="btn btn-outline-dark mt-auto">
+    <br>
+    <h3>LOGIN</h3>
+    <h4>{{mensaje}}</h4>
+    
     <form action="" method="POST">
      {% csrf_token %}
 
 
      {{form.as_p}}
 
-     <button type="submit">Iniciar Sesion </button>
+     <button type="submit" class="btn btn-outline-dark mt-auto">Iniciar Sesion </button><a class="btn btn-outline-dark mt-auto" href="{% url 'Registrarse' %}">Registrarse </a>
+     
     </form>
+    
+    <br>
+    <br>
 <div class="text-center" ><a class="btn btn-outline-dark mt-auto" href="/Appventas/">Volver</a></div>
 
 <br><br>
