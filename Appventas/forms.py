@@ -1,5 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
+
+from .models import perfiles
 
 
 
@@ -66,6 +69,22 @@ class enviarMensaje(forms.Form):
     Correo=forms.EmailField()
     Telefono=forms.CharField()
     Mensaje=forms.CharField()
+
+
+class EditarUsuario(UserChangeForm):
+   # lo que queresmos definir del usuario
+    first_name=forms.CharField(max_length=30,label="Modificar nombre")
+    last_name=forms.CharField(max_length=30,label="Modificar apellido")
+    email=forms.EmailField(label="Modificar E-mail")
+   # password1= forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+   # password2= forms.CharField(label="Repetir la Contraseña", widget=forms.PasswordInput)
+
+    class Meta:
+        model= User
+        fields=['first_name','last_name','email']
+        #help_texts={k:"" for k in fields}   
+
+
 
 #Formulario para Registrarse
 # class registroFormulario(UserCreationForm):

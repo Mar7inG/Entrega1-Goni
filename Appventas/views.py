@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from Appventas.models import accesorios, bicicletas, repuestos, indumentaria,EnviarMensajes
-from Appventas.forms import accesoriosFormulario, bicisFormulario, repuestosFormulario, indumentariaFormularios, enviarMensaje
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from Appventas.forms import EditarUsuario, accesoriosFormulario, bicisFormulario, repuestosFormulario, indumentariaFormularios, enviarMensaje
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm , UserChangeForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin #solo funciona con las vistas basadas en clases
 from django.contrib.auth.decorators import login_required#decorador para vistas basadas en funciones.Aumenta la funcionalidad de una funcion.
@@ -46,11 +46,12 @@ def IrEnviarMensaje(request):
         return render (request,"EnviarMensaje.html",{"MensajeEnviar":MensajeEnviado})
 
 
-#Formularios
+
 def Save(request):#Template de confirmacion de guardado.
 
     return render(request, "Save.html")
-
+#Formularios
+@login_required
 def Formulariobicis(request):#Template cargar una bici en la tabla
 
     if request.method == 'POST':
@@ -71,7 +72,7 @@ def Formulariobicis(request):#Template cargar una bici en la tabla
         BiciFormulario=bicisFormulario()
         return render(request,"FormularioBicicletas.html", {"BiciFormulario": BiciFormulario})
 
-
+@login_required
 def Formularioindumentarias(request):#Template cargar una indumentaria en la tabla
 
 
@@ -93,7 +94,7 @@ def Formularioindumentarias(request):#Template cargar una indumentaria en la tab
         InduFormulario=indumentariaFormularios()
         return render(request,"FormularioIndumentaria.html", {"IndumentariaFormularios": InduFormulario})
 
-
+@login_required
 def Formulariorepuestos(request):#Template cargar un repuesto en la tabla
 
     if request.method == 'POST':
@@ -116,7 +117,7 @@ def Formulariorepuestos(request):#Template cargar un repuesto en la tabla
         RepuFormulario=repuestosFormulario()
         return render(request,"FormularioRepuestos.html", {"RepuestosFormularios":RepuFormulario})
 
-
+@login_required
 def Formularioaccesorios(request):#Template cargar un repuesto en la tabla
 
     if request.method == 'POST':
@@ -182,14 +183,14 @@ def ResultBici(request):
     print(request.GET)
 
     if request.GET["modelo"]: 
-        print("Entro al if")
+       
         modelo=request.GET["modelo"]
-        print(modelo)
+      
         modelos=bicicletas.objects.filter(modelo__icontains=modelo)
-        print(modelos)
+        
         return render (request,"BusquedaBicicleta.html", {"modelos": modelos , "modelo":modelo})
     else:
-        print("No entro al if")
+       
         respuesta="No enviaste datos"
         return render(respuesta,"BusquedaBicicleta.html")
     
@@ -203,14 +204,14 @@ def ResultIndu(request):
     print(request.GET)
 
     if request.GET["tipo"]: 
-        print("Entro al if")
+        
         tipo=request.GET["tipo"]
-        print(tipo)
+        
         tipos=indumentaria.objects.filter(tipo__icontains=tipo)
-        print(tipos)
+        
         return render (request,"BusquedaIndumentaria.html", {"tipos": tipos ,"tipo":tipo})
     else:
-        print("No entro al if")
+        
         respuesta="No enviaste datos"
         return render(respuesta,"BusquedaIndumentaria.html")
  
@@ -224,14 +225,14 @@ def ResultRepues(request):
     print(request.GET)
 
     if request.GET["tipo"]: 
-        print("Entro al if")
+        
         tipo=request.GET["tipo"]
-        print(tipo)
+        
         tipos = repuestos.objects.filter(tipo__icontains=tipo)
-        print(tipos)
+        
         return render (request,"BusquedaRepuesto.html", {"tipos": tipos , "tipo":tipo})
     else:
-        print("No entro al if")
+        
         respuesta="No enviaste datos"
         return render(respuesta,"BusquedaRepuesto.html")
     
@@ -244,14 +245,14 @@ def ResultAcc(request):
     print(request.GET)
 
     if request.GET["tipo"]: 
-        print("Entro al if")
+        
         tipo=request.GET["tipo"]
-        print(tipo)
+       
         tipos=accesorios.objects.filter(tipo__icontains=tipo)
-        print(tipos)
+        
         return render (request,"BusquedaAccesorios.html", {"tipos": tipos , "tipo":tipo})
     else:
-        print("No entro al if")
+        
         respuesta="No enviaste datos"
         return render(respuesta,"BusquedaAccesorios.html")
 
@@ -389,6 +390,77 @@ def editarrepuestos(request, id):
         })
         return render(request,"EditarRepuestos.html", {"RepuFormulario": repuFormulario , "id": repuesto.id})
 
+def editarindumentaria(request, id):
+
+    indument = indumentaria.objects.get(id = id)
+
+    if request.method == 'POST':
+        
+        induFormulario=indumentariaFormularios(request.POST)
+
+        if induFormulario.is_valid():
+            print("Entro al 2° if")
+            data=induFormulario.cleaned_data
+        
+            indument.codigo = data ["codigo"]
+            indument.marca = data ["marca"]
+            indument.modelo = data ["modelo"]
+            indument.descripcion = data ["repuesto"]
+            indument.precio = data ["repuesto"]
+            indument.tipo = data ["tipo"]
+            indument.talle = data ["talle"]
+
+            indument.save()
+            return render(request, "Save.html")
+    
+    else:
+        induFormulario=indumentariaFormularios(initial={
+            "codigo": indument.codigo,
+            "marca": indument.marca,
+            "modelo": indument.modelo,
+            "tipo": indument.tipo,
+            "talle":indument.talle,
+            "descripcion": indument.descripcion,
+            "precio": indument.precio,
+        })
+        return render(request,"EditarIndumentaria.html", {"InduFormulario": induFormulario , "id": indument.id})
+
+
+def editaraccesorios(request, id):
+
+    acc = accesorios.objects.get(id = id)
+
+    if request.method == 'POST':
+        
+        accFormulario=accesoriosFormulario(request.POST)
+
+        if accFormulario.is_valid():
+           
+            data=accFormulario.cleaned_data
+        
+            acc.codigo = data ["codigo"]
+            acc.marca = data ["marca"]
+            acc.modelo = data ["modelo"]
+            acc.descripcion = data ["repuesto"]
+            acc.precio = data ["repuesto"]
+            acc.tipo = data ["tipo"]
+            acc.talle = data ["talle"]
+
+            acc.save()
+            return render(request, "Save.html")
+    
+    else:
+        accFormulario=accesoriosFormulario(initial={
+            "codigo": acc.codigo,
+            "marca": acc.marca,
+            "modelo": acc.modelo,
+            "tipo": acc.tipo,
+            "talle":acc.talle,
+            "descripcion": acc.descripcion,
+            "precio": acc.precio,
+        })
+        return render(request,"EditarAccesorios.html", {"AccFormulario": accFormulario , "id": acc.id})
+
 #LOGIN
 def iniciar_sesion(request):
 
@@ -396,25 +468,30 @@ def iniciar_sesion(request):
         form=AuthenticationForm(request, data=request.POST)
 
         if form.is_valid():
+            print("Entro al is valid")
             usuario=form.cleaned_data.get('username')
             clave=form.cleaned_data.get('password')
 
             user=authenticate(username=usuario,password=clave)
 
             if user is not None:
+                print("Entro al is not none")
                 login(request,user)
 
                 return render(request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})
             else:
-
+                print("Entro al is not none ELSE")
                 form = AuthenticationForm()
-                return render (request, "LoginError.html", {"mensaje":"Error!",'form':form}) 
+                return render (request, "Login.html", {"mensaje":"Error!",'form':form}) 
         else:
+                print("Entro al is valid ELSE")
                 form = AuthenticationForm()
-                return render (request, "LoginError.html", {"mensaje":"Error, datos incorrectos",'form':form}) 
+                return render (request, "Login.html", {"mensaje":"Error, datos incorrectos. \n Vuelva a intentarlo.",'form':form}) 
     else:
+        print("Entro al metodo GET: ",request.method)
         form = AuthenticationForm()
         return render (request, "Login.html", {'form':form})
+
 #Registrarse
 def IrRegistrarse(request):
     return render (request, "LoginRegistro.html")
@@ -432,35 +509,44 @@ def registrarse(request):
             return render(request,'Save.html',{"mensaje":f"Usuario {username} creado."})
         else:
             form=UserCreationForm()
-            return render (request, 'LoginRegistro.html',{"mensaje":f"Usuario no valido","form": form})
+            return render (request, 'LoginRegistro.html',{"mensaje":f"Usuario no valido. Vuelva a Intentarlo.","form": form})
         
     else:
         form=UserCreationForm()
         return render (request,'LoginRegistro.html', {"form": form})
 
 # #Perfil Usuario
-def LoginPerfil(request):
-    return render(request,'LoginPerfil.html')
-# def iniciar_sesion(request):
 
-#     if request.method == "POST":
-#         user=authenticate(username=usuario,password=clave)
 
-#         if user is not None:
-#                 login(request,user)
+def EditarPerfil(request):
 
-#                 return render(request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})
-#         else:
+    usuario=request.user
+    
+    if request.method == "POST":
+         
+        formularioPerfil=EditarUsuario (request.POST)
 
-#                 form = AuthenticationForm()
-#                 return render (request, "LoginError.html", {"mensaje":"Error!",'form':form}) 
-#         else:
-#                 form = AuthenticationForm()
-#                 return render (request, "LoginError.html", {"mensaje":"Error, datos incorrectos",'form':form}) 
-#     else:
+
+        if formularioPerfil.is_valid():
+                
+                data=formularioPerfil.cleaned_data
+
+                usuario.first_name=data["first_name"]
+                usuario.last_name=data["last_name"]
+                usuario.email=data["email"]
+                #usuario.password1=data["password1"]
+                #usuario.password2=data["password2"]
+
+                usuario.save()
+
+                return render(request, "Save.html", {"mensaje":"Datos actualizados con exito.."})
+    else:
+          
+        formularioPerfil=EditarUsuario (initial={'Nombre':usuario.first_name,'Apellido':usuario.last_name,'Email':usuario.email})
+        #formularioPerfil=UserChangeForm (instance=request.user)
         
-#         user=authenticate(username=usuario,password=clave)
-#         return render (request, "LoginPerfil.html", {"mensaje":f"Bienvenido {usuario}"})
-
+    return render (request, "LoginPerfil.html", {"PerfilFormulario":formularioPerfil}) 
+        
+   
 
 

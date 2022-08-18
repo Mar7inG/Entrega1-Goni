@@ -9,10 +9,10 @@
     
         
        
-        <form action="{% url 'Editarbicis' id %}" method = "POST">{% csrf_token %}
+        <form action="{% url 'Editaracc' id %}" method = "POST">{% csrf_token %}
 
 
-             {{BiciFormulario.as_table}}
+             {{AccFormulario.as_table}}
 
              <input class="btn btn-outline-dark mt-auto" type="submit" value="Enviar"  href="">
 
@@ -23,8 +23,3 @@
     <div class="text-center"><a  class="btn btn-outline-dark mt-auto" href="{% url 'Formularios' %}">Volver</a></div>
       
     
-    
-
-
-
-{% endblock bloquecambia %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from Appventas.views import (
-    BusquedaAcc, Formularioaccesorios, Formulariobicis, Formularioindumentarias, Formulariorepuestos, LeerAcc, LoginPerfil, ResultAcc, editarbicis,
+    BusquedaAcc, EditarPerfil, Formularioaccesorios, Formulariobicis, Formularioindumentarias, Formulariorepuestos, LeerAcc, ResultAcc, editaraccesorios, editarbicis, editarindumentaria,
     editarrepuestos, eliminarIndumentaria, eliminaraccesorios, eliminarbici, eliminarrepuestos, iniciar_sesion, inicio, 
     Busquedabicis, registrarse, LeerIndum, LeerBicis, LeerRepu, ResultBici, BusquedaIndu, BusquedaRepues, ResultIndu, ResultRepues,
     Nosotros, Formularios, IrEnviarMensaje, IrRegistrarse
@@ -46,12 +46,15 @@ urlpatterns = [
     #EDITAR
     path('editarbicis/<int:id>', editarbicis, name="Editarbicis"),
     path('editarrepu/<int:id>', editarrepuestos, name="Editarrepu"),
+    path('editarindu/<int:id>', editarindumentaria, name="Editarindu"),
+    path('editaracc/<int:id>', editaraccesorios, name="Editaracc"),
     #LOGIN
     path('login', iniciar_sesion, name='Login'),
     path('IrRegistro', IrRegistrarse,name="IrRegistro" ),
     path('registrarse', registrarse, name='Registrarse'),
     path('logout', LogoutView.as_view(template_name='logout.html'),name='Logout'),
-    path('loginPerfil', LoginPerfil, name="Perfil"),
+    path('loginPerfil', EditarPerfil, name="Perfil"),
+    
     #Imagenes/Avatars
     
 ]
